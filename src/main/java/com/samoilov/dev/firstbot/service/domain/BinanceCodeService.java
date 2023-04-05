@@ -1,7 +1,6 @@
 package com.samoilov.dev.firstbot.service.domain;
 
 import com.samoilov.dev.firstbot.entity.binance.CodeEntity;
-import com.samoilov.dev.firstbot.entity.binance.PriceEntity;
 import com.samoilov.dev.firstbot.repository.CodeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

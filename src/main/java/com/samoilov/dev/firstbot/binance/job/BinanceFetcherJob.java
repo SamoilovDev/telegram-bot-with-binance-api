@@ -39,9 +39,8 @@ public class BinanceFetcherJob {
         List<TickerPrice> tickerPrices = binanceApiRestClient.getAllPrices();
         tickerPrices.forEach(
             tickerPrice -> {
-                BigDecimal price = BigDecimal.ZERO;
                 try {
-                    price = new BigDecimal(tickerPrice.getPrice());
+                    BigDecimal price = new BigDecimal(tickerPrice.getPrice());
                     binancePriceService.save(
                             binanceCodeService.get(tickerPrice.getSymbol()),
                             price.multiply(binanceProperties.getMultiplyValue()).toBigInteger(),
