@@ -20,10 +20,10 @@ public class UserService {
                 .orElseGet(() -> this.save(UserMapper.map(user)));
     }
 
-    public UserEntity incrementCount(User user) {
+    public void incrementCount(User user) {
         UserEntity userEntity = this.findOrSave(user);
         userEntity.setCommandCounter(userEntity.getCommandCounter() + 1);
-        return this.save(userEntity);
+        this.save(userEntity);
     }
 
     private UserEntity save(UserEntity userEntity) {
