@@ -1,6 +1,7 @@
 package com.samoilov.dev.firstbot.controller;
 
 import com.samoilov.dev.firstbot.config.properties.TelegramProperties;
+import com.samoilov.dev.firstbot.enums.MessageType;
 import com.samoilov.dev.firstbot.service.CurrencyExchangeBotService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.Objects;
 
 import static ch.qos.logback.core.CoreConstants.EMPTY_STRING;
+import static com.samoilov.dev.firstbot.enums.MessageType.*;
 
 @Slf4j
 @Component
@@ -38,20 +40,27 @@ public class CurrencyExchangeBotController extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        String message = update.hasMessage() && update.getMessage().hasText()
-                ? update.getMessage().getText()
-                : EMPTY_STRING;
+        String message;
+        if (update.hasMessage()) {
+            message = update.getMessage().hasText() ? update.getMessage().getText() : EMPTY_STRING;
+        } else if (update.hasCallbackQuery()) {
+            message = update.getCallbackQuery().getData();
+        } else message = EMPTY_STRING;
 
-        SendMessage sendMessage = message.isBlank()
-                ? null
-                : switch (message.split("\\s+")[0]) {
-            case "/start" -> currencyExchangeBotService.startMessage(update);
-            default -> currencyExchangeBotService.errorMessage(update);
+
+        MessageType messageType = switch (message.split("\\s+")[0]) {
+            case "/start" -> START;
+            case "/info" -> INFO;
+            case "/help" -> HELP;
+            case "/binance" -> BINANCE;
+            case "/rate" -> RATE;
+            default -> ERROR;
         };
+        SendMessage messageToSend = currencyExchangeBotService.getResponse(update, messageType);
 
         try {
-            super.execute(sendMessage);
-            log.info("Message was sent: ".concat(Objects.requireNonNull(sendMessage).getText()));
+            super.execute(messageToSend);
+            log.info("Message was sent: ".concat(Objects.requireNonNull(messageToSend).getText()));
         } catch (TelegramApiException e) {
             log.warn(e.getMessage());
         }

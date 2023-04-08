@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @IdClass(PriceId.class)
 @Getter
 @Setter
+@ToString
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,7 +26,7 @@ public class PriceEntity {
     @Column(name = "time")
     private LocalDateTime time;
 
-    @Column(name = "value", precision = 10, scale = 7)
+    @Column(name = "value", precision = 20, scale = 4)
     private BigInteger value;
 
 }

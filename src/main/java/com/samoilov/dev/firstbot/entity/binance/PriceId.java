@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @ToString
 public class PriceId implements Serializable {
 
-    private Long code;
+    private String code;
 
     private LocalDateTime time;
 

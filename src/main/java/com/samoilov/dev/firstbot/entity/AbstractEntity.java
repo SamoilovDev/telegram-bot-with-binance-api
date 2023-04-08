@@ -22,7 +22,7 @@ import java.sql.Timestamp;
 public abstract class AbstractEntity {
 
     @Id
-    @Column(name = "id", length = 100)
+    @Column(name = "id", length = 50)
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;

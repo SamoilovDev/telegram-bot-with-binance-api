@@ -13,10 +13,8 @@ public class BinanceCodeService {
     @Autowired
     private final CodeRepository codeRepository;
 
-    public CodeEntity save(String codeName) {
-        return CodeEntity.builder()
-                .name(codeName)
-                .build();
+    private CodeEntity save(String codeName) {
+        return codeRepository.save(CodeEntity.builder().name(codeName).build());
     }
 
     public CodeEntity get(String codeName) {

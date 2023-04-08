@@ -17,7 +17,7 @@ import java.util.List;
 })
 public class CodeEntity extends AbstractEntity {
 
-    @Column(name = "name", length = 50)
+    @Column(name = "name", length = 20)
     private String name;
 
     @OneToMany(mappedBy = "code", fetch = FetchType.LAZY)
