@@ -30,8 +30,13 @@ public class UserEntity extends AbstractEntity {
     @Column(name = "user_name", length = 50)
     private String userName;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(name = "active_type")
-    private ActiveType activeType;
+    private ActiveType activeType = ActiveType.ENABLED;
+
+    @Builder.Default
+    @Column(name = "command_counter")
+    private Long commandCounter = 0L;
 
 }

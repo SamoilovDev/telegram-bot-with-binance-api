@@ -43,6 +43,12 @@ public class CurrencyExchangeBotService {
                         : update.getCallbackQuery().getMessage().getChatId()
         );
 
+        userService.incrementCount(
+                update.hasMessage()
+                        ? update.getMessage().getFrom()
+                        : update.getCallbackQuery().getFrom()
+        );
+
         return switch (type) {
             case START -> this.getStartMessage(update, chatId);
             case INFO -> this.getInfoMessage(chatId);

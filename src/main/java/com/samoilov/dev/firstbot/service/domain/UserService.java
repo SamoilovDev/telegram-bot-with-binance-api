@@ -20,9 +20,16 @@ public class UserService {
                 .orElseGet(() -> this.save(UserMapper.map(user)));
     }
 
+    public UserEntity incrementCount(User user) {
+        UserEntity userEntity = this.findOrSave(user);
+        userEntity.setCommandCounter(userEntity.getCommandCounter() + 1);
+        return this.save(userEntity);
+    }
+
     private UserEntity save(UserEntity userEntity) {
         return userRepository.save(userEntity);
     }
+
 
     public boolean deleteByTelegramId(Long telegramId) {
         return userRepository.deleteByTelegramId(telegramId) > 0;
