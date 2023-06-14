@@ -15,10 +15,10 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-@SuperBuilder(toBuilder = true)
-@AllArgsConstructor
-@NoArgsConstructor
 @MappedSuperclass
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder(toBuilder = true)
 public abstract class AbstractEntity {
 
     @Id

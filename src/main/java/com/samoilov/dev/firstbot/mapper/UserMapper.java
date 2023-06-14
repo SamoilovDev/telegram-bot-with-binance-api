@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 public class UserMapper {
 
     public static UserEntity map(User user) {
-        var chatUser = new UserEntity();
+        UserEntity chatUser = new UserEntity();
         chatUser.setTelegramId(user.getId());
         chatUser.setUserName(user.getUserName());
         chatUser.setFirstName(user.getFirstName());
@@ -15,7 +15,7 @@ public class UserMapper {
     }
 
     public static User map(UserEntity userEntity) {
-        var chatUser = new User();
+        User chatUser = new User();
         chatUser.setId(userEntity.getTelegramId());
         chatUser.setUserName(userEntity.getUserName());
         chatUser.setFirstName(userEntity.getFirstName());

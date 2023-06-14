@@ -4,7 +4,6 @@ import com.samoilov.dev.firstbot.entity.telegram.UserEntity;
 import com.samoilov.dev.firstbot.mapper.UserMapper;
 import com.samoilov.dev.firstbot.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.User;
 
@@ -12,7 +11,6 @@ import org.telegram.telegrambots.meta.api.objects.User;
 @AllArgsConstructor
 public class UserService {
 
-    @Autowired
     private final UserRepository userRepository;
 
     public UserEntity findOrSave(User user) {

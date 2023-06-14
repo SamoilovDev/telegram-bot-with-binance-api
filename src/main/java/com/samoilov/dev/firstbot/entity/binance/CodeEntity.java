@@ -8,10 +8,10 @@ import java.util.List;
 
 @Getter
 @Setter
-@Builder(toBuilder = true)
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
 @Table(name = "code_table", uniqueConstraints = {
         @UniqueConstraint(columnNames = "name", name = "unique_name_idx")
 })

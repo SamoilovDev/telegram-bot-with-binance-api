@@ -9,11 +9,11 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@Embeddable
 @Setter
 @Getter
-@EqualsAndHashCode
 @ToString
+@Embeddable
+@EqualsAndHashCode
 public class PriceId implements Serializable {
 
     private String code;

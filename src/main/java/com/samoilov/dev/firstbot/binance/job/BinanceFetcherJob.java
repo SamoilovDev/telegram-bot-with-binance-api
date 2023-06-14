@@ -7,7 +7,6 @@ import com.samoilov.dev.firstbot.service.domain.BinanceCodeService;
 import com.samoilov.dev.firstbot.service.domain.BinancePriceService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -22,16 +21,12 @@ import java.util.List;
 @EnableScheduling
 public class BinanceFetcherJob {
 
-    @Autowired
     private final BinanceCodeService binanceCodeService;
 
-    @Autowired
     private final BinancePriceService binancePriceService;
 
-    @Autowired
     private final BinanceApiRestClient binanceApiRestClient;
 
-    @Autowired
     private final BinanceProperties binanceProperties;
 
     @Scheduled(fixedRate = 60000)

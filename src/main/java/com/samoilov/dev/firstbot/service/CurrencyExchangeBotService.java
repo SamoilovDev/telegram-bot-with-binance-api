@@ -9,7 +9,6 @@ import com.samoilov.dev.firstbot.service.domain.UserService;
 import com.samoilov.dev.firstbot.service.util.Buttons;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -24,16 +23,12 @@ import static com.samoilov.dev.firstbot.service.util.Messages.*;
 @AllArgsConstructor
 public class CurrencyExchangeBotService {
 
-    @Autowired
     private final UserService userService;
 
-    @Autowired
     private final BinanceProperties binanceProperties;
 
-    @Autowired
     private final BinanceCodeService binanceCodeService;
 
-    @Autowired
     private final BinancePriceService binancePriceService;
 
     public SendMessage getResponse(Update update, MessageType type) {

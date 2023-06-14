@@ -1,11 +1,11 @@
 package com.samoilov.dev.firstbot.controller;
 
 import com.samoilov.dev.firstbot.config.properties.TelegramProperties;
+import com.samoilov.dev.firstbot.enums.CommandType;
 import com.samoilov.dev.firstbot.enums.MessageType;
 import com.samoilov.dev.firstbot.service.CurrencyExchangeBotService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -22,10 +22,8 @@ import static com.samoilov.dev.firstbot.enums.MessageType.*;
 @AllArgsConstructor
 public class CurrencyExchangeBotController extends TelegramLongPollingBot {
 
-    @Autowired
     private final TelegramProperties telegramProperties;
 
-    @Autowired
     private final CurrencyExchangeBotService currencyExchangeBotService;
 
     @Override
@@ -40,20 +38,22 @@ public class CurrencyExchangeBotController extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        String message;
+        String message = EMPTY_STRING;
         if (update.hasMessage()) {
-            message = update.getMessage().hasText() ? update.getMessage().getText() : EMPTY_STRING;
+            message = update.getMessage().hasText()
+                    ? update.getMessage().getText()
+                    : EMPTY_STRING;
         } else if (update.hasCallbackQuery()) {
             message = update.getCallbackQuery().getData();
-        } else message = EMPTY_STRING;
+        }
 
 
         MessageType messageType = switch (message.split("\\s+")[0]) {
-            case "/start" -> START;
-            case "/info" -> INFO;
-            case "/help" -> HELP;
-            case "/binance" -> BINANCE;
-            case "/rate" -> RATE;
+            case CommandType.START -> START;
+            case CommandType.INFO -> INFO;
+            case CommandType.HELP -> HELP;
+            case CommandType.BINANCE -> BINANCE;
+            case CommandType.RATE -> RATE;
             default -> ERROR;
         };
         SendMessage messageToSend = currencyExchangeBotService.getResponse(update, messageType);

@@ -7,13 +7,13 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
-@IdClass(PriceId.class)
 @Getter
 @Setter
 @ToString
-@Builder(toBuilder = true)
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@IdClass(PriceId.class)
+@Builder(toBuilder = true)
 @Table(name = "price_table")
 public class PriceEntity {
 

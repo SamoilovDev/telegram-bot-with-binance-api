@@ -8,11 +8,11 @@ import org.hibernate.annotations.SQLDelete;
 
 @Getter
 @Setter
-@Builder(toBuilder = true)
-@AllArgsConstructor
-@NoArgsConstructor
-@SQLDelete(sql = "UPDATE user_table SET active_type = 'DISABLED' WHERE id = ?")
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
+@SQLDelete(sql = "UPDATE user_table SET active_type = 'DISABLED' WHERE id = ?")
 @Table(name = "user_table", uniqueConstraints = {
         @UniqueConstraint(columnNames = "telegram_id", name = "user_table_unique_telegram_id_idx")
 })

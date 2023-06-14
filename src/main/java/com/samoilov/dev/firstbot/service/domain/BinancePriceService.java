@@ -5,7 +5,6 @@ import com.samoilov.dev.firstbot.entity.binance.PriceEntity;
 import com.samoilov.dev.firstbot.repository.PriceRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
@@ -16,7 +15,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class BinancePriceService {
 
-    @Autowired
     private final PriceRepository priceRepository;
 
     public PriceEntity getLastPrice(CodeEntity codeEntity) {

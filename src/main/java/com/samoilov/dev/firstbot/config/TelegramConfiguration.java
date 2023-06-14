@@ -2,7 +2,6 @@ package com.samoilov.dev.firstbot.config;
 
 import com.samoilov.dev.firstbot.controller.CurrencyExchangeBotController;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -14,7 +13,6 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 @AllArgsConstructor
 public class TelegramConfiguration {
 
-    @Autowired
     private final CurrencyExchangeBotController currencyExchangeBotApi;
 
     @EventListener({ContextRefreshedEvent.class})
